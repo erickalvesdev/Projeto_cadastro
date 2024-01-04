@@ -1,0 +1,21 @@
+--Criada procedure para insert na tabela CADASTRO EMPRESA CNAE
+CREATE PROC [dbo].[SP_INSERT_CADASTRO_EMPRESA_CNAE](
+        @IdCadastroEmpresa INT,
+        @IdCnae INT,
+        @Principal BIT
+)
+AS
+/*
+DOCUMENTAÇÃO
+ARQUIVO FONTE.....: SP_INSERT_CADASTRO_EMPRESA_CNAE.SQL
+OBJETIVO..........: INSERIR DADOS NA TABELA CNAE
+AUTOR.............: ERICK ALVES
+DATA..............: 04/01/2024
+EX................: EXEC [SP_INSERT_CADASTRO_EMPRESA_CNAE] @IdCadastroEmpresa, @IdCnae, @Principal
+*/
+    IF ID_CadastroEmpresa IS NULL RETURN 1
+    BEGIN
+        INSERT INTO CadastroEmpresaCnae(IdCadastroEmpresa, IdCnae, Principal)
+            VALUES(@IdCadastroEmpresa, @IdCnae, @Principal)
+    END
+GO
