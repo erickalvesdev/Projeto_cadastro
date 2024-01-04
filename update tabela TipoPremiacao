@@ -1,0 +1,21 @@
+--Criada procedure para update na tabela tipo premiacao
+CREATE PROC [dbo].[SP_Up_TIPO_PREMIACAO](
+    @Id INT,
+    @NomePremiacao VARCHAR(50)
+)
+AS
+/*
+DOCUMENTAÇÃO
+ARQUIVO FONTE.....: SP_Up_TIPO_PREMIACAO.SQL
+OBJETIVO..........: ATUALIZANDO DADOS NA TABELA TIPO DE PREMIACAO
+AUTOR.............: ERICK ALVES
+DATA..............: 04/01/2024
+EX................: EXEC [SP_Up_TIPO_PREMIACAO] @ID, @NomePremiacao 
+*/
+    IF ID_TipoPremiacao IS NULL RETURN 1
+    BEGIN 
+		UPDATE TipoPremiacao
+			SET NomePremiacao = @NomePremiacao
+		WHERE Id  = @ID_TipoPremiacao
+	END
+GO

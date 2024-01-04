@@ -1,0 +1,22 @@
+--Criada procedure para update na tabela cadastro Cnae
+CREATE PROC [dbo].[SP_Up_CADASTRO_EMPRESA_CNAE](
+    @IdCadastroEmpresa INT,
+    @IdCnae INT,
+    @Principal BIT
+)
+AS
+/*
+DOCUMENTAÇÃO
+ARQUIVO FONTE.....: SP_Up_CADASTRO_EMPRESA_CNAE.SQL
+OBJETIVO..........: ATUALIZANDO DADOS NA TABELA CADASTRO EMPRESA CNAE
+AUTOR.............: ERICK ALVES
+DATA..............: 04/01/2024
+EX................: EXEC [SP_Up_CADASTRO_EMPRESA_CNAE]  @IdCadastroEmpresa, @IdCnae, @Principal
+*/
+    IF ID_Cnae IS NULL RETURN 1
+    BEGIN 
+		UPDATE CadastroEmpresaCnae
+			SET Principal = @Principal
+		WHERE IdCadastroEmpresa  = @IdCadastroEmpresa AND IdCnae = @IdCnae
+	END
+GO
