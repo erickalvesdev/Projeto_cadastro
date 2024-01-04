@@ -1,0 +1,26 @@
+--Criada procedure para insert na tabela Premiacao
+CREATE PROC [dbo].[SP_INSERT_Premiacao](
+        @IdRanking INT,
+        @IdCadastroEmpresa INT,
+        @IdTipoPremiacao INT,
+        @PremiacaoAtual MONEY,
+        @Mes TINYINT,
+        @Ano SMALLINT,
+)
+AS
+/*
+DOCUMENTAÇÃO
+ARQUIVO FONTE.....: SP_INSERT_Premiacao.SQL
+OBJETIVO..........: INSERIR DADOS NA TABELA PREMIAÇÃO
+AUTOR.............: ERICK ALVES
+DATA..............: 04/01/2024
+EX................: EXEC [SP_INSERT_Premiacao] @IdRanking, @IdCadastroEmpresa,@IdTipoPremiacao, @PremiacaoAtual, @Mes, @Ano
+*/
+    IF ID_CadastroEmpresa IS NULL RETURN 1
+    BEGIN
+        INSERT INTO Premiacao(IdRanking, IdCadastroEmpresa, IdTipoPremiacao, 
+                              PremiacaoAtual, Mes, Ano)
+            VALUES(@IdRanking, @IdCadastroEmpresa,@IdTipoPremiacao, 
+                   @PremiacaoAtual, @Mes, @Ano)
+    END
+GO
