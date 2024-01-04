@@ -1,0 +1,23 @@
+--Criada procedure para update na tabela Ranking
+CREATE PROC [dbo].[SP_Up_RANKING](
+    @Id INT,
+    @Nome VARCHAR(20),
+    @Valor MONEY
+)
+AS
+/*
+DOCUMENTAÇÃO
+ARQUIVO FONTE.....: SP_Up_RANKING.SQL
+OBJETIVO..........: ATUALIZANDO DADOS NA TABELA CADASTRO EMPRESA CNAE
+AUTOR.............: ERICK ALVES
+DATA..............: 04/01/2024
+EX................: EXEC [SP_Up_RANKING]  @Id, @nome, @valor
+*/
+    IF ID_Ranking IS NULL RETURN 1
+    BEGIN 
+		UPDATE Ranking
+			SET Nome = @Nome,
+                Valor = @Valor
+		WHERE Id  = @Id
+	END
+GO
