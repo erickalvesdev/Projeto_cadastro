@@ -16,7 +16,7 @@ AUTOR.............: ERICK ALVES
 DATA..............: 04/01/2024
 EX................: EXEC [SP_INSERT_Premiacao] @IdRanking, @IdCadastroEmpresa,@IdTipoPremiacao, @PremiacaoAtual, @Mes, @Ano
 */
-    IF ID_CadastroEmpresa IS NULL RETURN 1
+    IF ID_Premiacao IS NULL RETURN 1
     BEGIN
         INSERT INTO Premiacao(IdRanking, IdCadastroEmpresa, IdTipoPremiacao, 
                               PremiacaoAtual, Mes, Ano)

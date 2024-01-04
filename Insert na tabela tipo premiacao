@@ -6,12 +6,12 @@ AS
 /*
 DOCUMENTAÇÃO
 ARQUIVO FONTE.....: SP_INSERT_TipoPremiacao.SQL
-OBJETIVO..........: INSERIR DADOS NA TABELA CNAE
+OBJETIVO..........: INSERIR DADOS NA TABELA TIPO DE PREMIAÇÃO
 AUTOR.............: ERICK ALVES
 DATA..............: 04/01/2024
 EX................: EXEC [SP_INSERT_TipoPremiacao] @IdCadastroEmpresa, @IdCnae, @Principal
 */
-    IF ID_CadastroEmpresa IS NULL RETURN 1
+    IF ID_TipoPremiacao IS NULL RETURN 1
     BEGIN
         INSERT INTO TipoPremiacao(NomePremiacao)
             VALUES(@NomePremiacao)
