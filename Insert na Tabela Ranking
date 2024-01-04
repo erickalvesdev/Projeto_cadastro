@@ -1,0 +1,20 @@
+--Criada procedure para insert na tabela RANKING
+CREATE PROC [dbo].[SP_INSERT_RANKING](
+        @Nome VARCHAR(20),
+        @Valor MONEY
+)
+AS
+/*
+DOCUMENTAÇÃO
+ARQUIVO FONTE.....: SP_INSERT_RANKING.SQL
+OBJETIVO..........: INSERIR DADOS NA TABELA CNAE
+AUTOR.............: ERICK ALVES
+DATA..............: 04/01/2024
+EX................: EXEC [SP_INSERT_RANKING] @Nome, @Valor
+*/
+    IF ID_CadastroEmpresa IS NULL RETURN 1
+    BEGIN
+        INSERT INTO Ranking(Nome, Valor)
+            VALUES(@Nome, @Valor)
+    END
+GO
