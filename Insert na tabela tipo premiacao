@@ -1,0 +1,19 @@
+--Criada procedure para insert na tabela Tipo de Premiacao
+CREATE PROC [dbo].[SP_INSERT_TipoPremiacao](
+        @NomePremiacao VARCHAR(50)
+)
+AS
+/*
+DOCUMENTAÇÃO
+ARQUIVO FONTE.....: SP_INSERT_TipoPremiacao.SQL
+OBJETIVO..........: INSERIR DADOS NA TABELA CNAE
+AUTOR.............: ERICK ALVES
+DATA..............: 04/01/2024
+EX................: EXEC [SP_INSERT_TipoPremiacao] @IdCadastroEmpresa, @IdCnae, @Principal
+*/
+    IF ID_CadastroEmpresa IS NULL RETURN 1
+    BEGIN
+        INSERT INTO TipoPremiacao(NomePremiacao)
+            VALUES(@NomePremiacao)
+    END
+GO
