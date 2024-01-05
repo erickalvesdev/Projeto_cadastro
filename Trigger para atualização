@@ -1,0 +1,28 @@
+CREATE TRIGGER [dbo].[TRG_PREMIACAO_ATUAL]
+ON Premiacao
+AFTER INSERT
+AS
+/*
+Documentação
+Arquivo Fonte.....: TRG_VALOR_TOTAL.SQL
+Objetivo..........: PREENCHE VALOR TOTAL COM O CALCULO DA FUNCTION 
+Autor.............: ERICK ALVES
+Data..............: 29/12/2023
+Ex................: SELECT [dbo].[TRG_VALOR_TOTAL]
+*/
+	BEGIN
+			DECLARE @ID_PremiacaoI INT
+			DECLARE @ID_Ranking INT
+			DECLARE @PremiacaoAtualI MONEY
+
+			SET @ID_PremiacaoI = SCOPE_IDENTITY()
+			SET @ID_RankingI = (SELECT ID_Ranking FROM inserted)
+			SET @PremiacaoAtualI = (SELECT PremiacaoAtual FROM inserted)
+			
+			SET @PremiacaoAtualI = [DBO].[FUNC_SALDO_PREMIACAO](@ID_PremiacaoI, @PremiacaoAtualI);
+			
+			UPDATE Premiacao
+			    SET PremiacaoAtual = @PremiacaoAtualI
+			WHERE ID = @ID_PremiacaoI;
+		END
+GO
