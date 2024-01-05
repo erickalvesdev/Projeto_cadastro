@@ -1,0 +1,33 @@
+CREATE FUNCTION [DBO].[FUNC_SALDO_PREMIACAO] (
+                @ID_CadastroEmpresa INT,
+                @Valor DECIMAL(15,2)
+                ) 
+		RETURNS DECIMAL(15,2)
+AS
+/*
+DOCUMENTAÇÃO
+ARQUIVO FONTE.....: FUNC_SALDO_PREMIACAO.SQL
+OBJETIVO..........: CALCULAR A PREMIACAO
+AUTOR.............: SMN - ERICK ALVES
+DATA..............: 05/01/2024
+EX................: SELECT [DBO].[FUNC_SALDO_PREMIACAO](1)
+*/
+
+	BEGIN  
+        DECLARE @RESULTADO DECIMAL (15,2)
+        DECLARE @VALOR_ATUAL DECIMAL(15,2)
+
+        SELECT  @VALOR_ATUAL = PremiacaoAtual
+            FROM Premiacao 
+        WHERE ID_CadastroEmpresa = @ID_CadastroEmpresa AND Mes <= (SELECT MAX(Mes) FROM Premiacao WHERE ID_CadastroEmpresa = @ID_CadastroEmpresa)
+              AND Ano = (SELECT MAX(Ano) FROM Premiacao WHERE ID_CadastroEmpresa = @ID_CadastroEmpresa) AND PremiacaoAtual IS NOT NULL
+        ORDER BY ID_CadastroEmpresa DESC 
+    IF @VALOR_ATUAL IS NULL
+
+        SET @RESULTADO = @Valor
+    ELSE 
+        SET @RESULTADO = @VALOR + @VALOR_ATUAL
+
+		RETURN @RESULTADO
+	END
+GO
