@@ -24,7 +24,7 @@ EX................: SELECT [DBO].[FUNC_SALDO_PREMIACAO](1)
         ORDER BY ID_CadastroEmpresa DESC 
     IF @VALOR_ATUAL IS NULL
 
-        SET @RESULTADO = @Valor
+        SET @RESULTADO = @VALOR_ATUAL
     ELSE 
         SET @RESULTADO = @VALOR + @VALOR_ATUAL
 
